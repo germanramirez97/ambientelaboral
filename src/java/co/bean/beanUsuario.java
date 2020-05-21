@@ -27,6 +27,7 @@ public class beanUsuario implements Serializable {
     private String nombre;
     private String apellido;
     private int cedula;
+    private int nivel;
 
     public void guardaUsuario(){
     Usuario u = new Usuario();
@@ -35,6 +36,7 @@ public class beanUsuario implements Serializable {
     u.setNombre(nombre);
     u.setApellido(apellido);
     u.setCedula(cedula);
+    u.setNivel(nivel);
     
     Operaciones oper= new Operaciones();
     int rta=oper.guardaUsu(u);
@@ -48,6 +50,14 @@ public class beanUsuario implements Serializable {
     }
     public String getUsuario() {
         return usuario;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
 
     public void setUsuario(String usuario) {
@@ -87,6 +97,6 @@ public class beanUsuario implements Serializable {
     }
 
     public String salir() {
-        return "index";
+        return "login";
     }
 }

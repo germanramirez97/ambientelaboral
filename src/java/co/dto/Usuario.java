@@ -16,16 +16,26 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private int cedula;
+    private int nivel;
 
     public Usuario() {
     }
 
-    public Usuario(String usuario, String contra, String nombre, String apellido, int cedula) {
+    public Usuario(String usuario, String contra, String nombre, String apellido, int cedula,int nivel) {
         this.usuario = usuario;
         this.contra = contra;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
+        this.nivel= nivel;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
 
     

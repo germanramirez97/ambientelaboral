@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Auntenticacion</title>
+    </h:head>
+    <h:body  style="background-image:url(images/descarga.jpg)">
+        
+        <h:form style="text-align: center ">
+            
+            <p:panel style="margin: 30px; margin-left: 500px; width:500px;height:400px; background-color: #c7ddef">
+                <p><strong> Bienvenidos a Ambiente Laboral </strong></p>
+            <p:panel id="basic" header="Inicio de sesion" footer="UNIVERSIDAD CENTRAL" style="margin-bottom:auto">
+                <h:panelGrid columns="2" cellpadding="10" bgcolor="68D3FF" >
+                    <p:outputLabel value="Usuario"/>
+                    <p:inputText value="#{autenticacionBean.usuario}" placeholder="Ingresa tu Usuario"/>
+
+                    <p:outputLabel value="CONTRASEÑA"/>
+                    <p:password id="nonFeedback" value="#{autenticacionBean.contraseña}" placeholder="Ingresa tu Contraseña" />
+
+                    <p:commandButton value="INGRESAR" action="#{autenticacionBean.ingresar()}"/>
+                    <p:commandButton value="REGISTRAR" action="#{autenticacionBean.registrar()}"/>
+
+                </h:panelGrid>
+            </p:panel>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

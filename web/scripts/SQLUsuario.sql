@@ -13,7 +13,9 @@ CREATE UNLOGGED TABLE public.usuario
     contra text COLLATE pg_catalog."default",
     nombre text COLLATE pg_catalog."default",
     apellido text COLLATE pg_catalog."default",
-    cedula numeric
+    cedula numeric,
+    nivel numeric
+    
 )
 WITH (
     OIDS = FALSE
