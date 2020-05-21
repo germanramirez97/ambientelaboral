@@ -20,7 +20,7 @@ public class beanAdministrador implements Serializable {
     private String contraadm;
     private String nombreadm;
     private String apellidoadm;
-    private int cedula;
+    private Integer cedula;
     
 //    public beanAdministrador() {
 //    this.cedula=0;
@@ -31,6 +31,10 @@ public class beanAdministrador implements Serializable {
 //    }
 
     public void guardaAdministrador(){
+        if (usuarioadm == null || usuarioadm.isEmpty() || contraadm == null || contraadm.isEmpty() || nombreadm == null || nombreadm.isEmpty()|| null == apellidoadm || apellidoadm.isEmpty()|| cedula == null){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", "Algunos campos estan vacios ¡Llenalos!"));
+            return;
+        }
     Administrador a=new Administrador();
     a.setUsuarioadm(usuarioadm);
     a.setContraadm(contraadm);
@@ -81,11 +85,11 @@ public class beanAdministrador implements Serializable {
         this.apellidoadm = apellidoadm;
     }
 
-    public int getCedula() {
+    public Integer getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(Integer cedula) {
         this.cedula = cedula;
     }
     

@@ -15,6 +15,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>app/inicio.xhtml</welcome-file>
+        <welcome-file>app/index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

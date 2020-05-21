@@ -28,6 +28,8 @@
             <input type="password" name="txtcontraseña" placeholder="Ingrese su contraseña"class="form-control">
         </div>
                 <input class="btn btn-primary"type="submit"name="accion"value="Ingresar" >
+                <input class="btn btn-primary" type="button" name="accion" value="Registrar Adm" onclick="location.href='app/Administrador.xhtml'">
+                
 </form>
        
         

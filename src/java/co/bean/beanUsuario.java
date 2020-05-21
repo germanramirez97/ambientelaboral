@@ -26,9 +26,13 @@ public class beanUsuario implements Serializable {
     private String contra;
     private String nombre;
     private String apellido;
-    private int cedula;
+    private Integer cedula;
 
     public void guardaUsuario(){
+        if (usuario == null || usuario.isEmpty() || contra == null || contra.isEmpty() || nombre == null || nombre.isEmpty()|| null == apellido || apellido.isEmpty()|| cedula == null){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", "Algunos campos estan vacios ¡Llenalos!"));
+            return;
+        }
     Usuario u = new Usuario();
     u.setUsuario(usuario);
     u.setContra(contra);
@@ -78,11 +82,11 @@ public class beanUsuario implements Serializable {
         this.apellido = apellido;
     }
 
-    public int getCedula() {
+    public Integer getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(Integer cedula) {
         this.cedula = cedula;
     }
 
