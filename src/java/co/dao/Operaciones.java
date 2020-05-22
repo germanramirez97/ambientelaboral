@@ -6,6 +6,8 @@
 package co.dao;
 
 import co.dto.Administrador;
+import co.dto.OpcionPregunta;
+import co.dto.Pregunta;
 import co.dto.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,41 +17,30 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
-
 public class Operaciones {
-    
-    public int loguear(String us, String pass){
+
+    public int loguear(String us, String pass) {
         Connection con = new Conexion().getConnection();
         PreparedStatement ps;
         ResultSet rs;
-        int nivel=0;
-        
-          String sql= "select nivel from usuario where usuario=? and contra=?";
-                   
+        int nivel = 0;
+        String sql = "select nivel from usuario where usuario=? and contra=?";
         try {
-           ps=con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setString(1, us);
             ps.setString(2, pass);
-           
-           rs=ps.executeQuery();
-           
-            if (rs.next()) { 
-                
-                nivel=rs.getInt(1);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                nivel = rs.getInt(1);
             }
-        } catch ( SQLException ex) {
-          
-        }
-        finally{  
+        } catch (SQLException ex) {
+        } finally {
             new Conexion().desConexion(con);
         }
-        
         return nivel;
     }
-    
-    public int guardaUsu(Usuario u){
+
+    public int guardaUsu(Usuario u) {
         Connection c = new Conexion().getConnection();
         if (c != null) {
             PreparedStatement ps;
@@ -60,7 +51,7 @@ public class Operaciones {
                 ps.setString(3, u.getApellido());
                 ps.setInt(4, u.getCedula());
                 ps.setString(5, u.getContra());
-                ps.setInt(6,u.getNivel());
+                ps.setInt(6, u.getNivel());
                 return ps.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, "Error al insertar Usuario", ex);
@@ -70,8 +61,8 @@ public class Operaciones {
         }
         return 0;
     }
-    
-    public int guardaAdm(Administrador dato){
+
+    public int guardaAdm(Administrador dato) {
         Connection ac = new Conexion().getConnection();
         if (ac != null) {
             PreparedStatement ps;
@@ -89,6 +80,48 @@ public class Operaciones {
                 new Conexion().desConexion(ac);
             }
         }
-    return 0;
+        return 0;
     }
+    
+    
+    public int guardaPregunta(Pregunta dato){
+         Connection pr = new Conexion().getConnection();
+        if (pr != null) {
+            PreparedStatement ps;
+            try {
+                ps = pr.prepareStatement("INSERT INTO public.pregunta(\n" +
+"	textopregunta)\n" +
+"	VALUES (?)");
+                ps.setString(1, dato.getTextoPregunta());
+                return ps.executeUpdate();
+            } catch (SQLException ex){
+                Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, "Error al insertar Preguntas", ex);
+            } finally {
+                new Conexion().desConexion(pr);
+            }
+        }
+        return 0;
+    }
+    
+    public int guardaOpcionPregunta(OpcionPregunta dato){
+         Connection op = new Conexion().getConnection();
+        if (op != null) {
+            PreparedStatement ps;
+            try {
+                ps = op.prepareStatement("INSERT INTO public.opcionespreguntas(\n" +
+"	opcionunica)\n" +
+"	VALUES (?)");
+                ps.setString(1, dato.getOpcionunica());
+                return ps.executeUpdate();
+            } catch (SQLException ex){
+                Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, "Error al insertar Preguntas", ex);
+            } finally {
+                new Conexion().desConexion(op);
+            }
+        }
+        return 0;
+    }
+    
+    
+    
 }
