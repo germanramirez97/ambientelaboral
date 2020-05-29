@@ -5,13 +5,12 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head> 
-        <title>Pagina Administradorr</title>
+        <title>Pagina Administrador</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         </link>
         <link rel="stylesheet" href="css/cut.css"/>
-        <f:event type="preRenderView" listener="#{beanAdministrador.verificarsesion()}"/>
     </h:head>
-    
+
     <h:body>
         <h:form id="form">
             <h:panelGrid columns="2" cellpadding="5">
@@ -25,7 +24,6 @@
                 <p:submenu label=" CREAR TEST" icon="pi pi-check" >
                     <p:column>
                         <p:commandButton value="Crear Preguntas" style="text-align: center; width: 200px" onclick="PF('dig').show();"/>
-                        <p:commandButton value="Crear Opcion preguntas" style="text-align: center; width: 200px" onclick="PF('opc').show();"/>
                         <p:commandButton value="Crear Test" style="text-align: center; width: 200px" onclick="PF('test').show();"/>
                     </p:column>
                 </p:submenu>
@@ -45,43 +43,82 @@
                         </p:submenu>
                     </p:column>
                 </p:submenu>
-
                 <p:menuitem value="CERRAR SESION" url="app/index.xhtml" icon="pi pi-times" />
             </p:megaMenu>
         </h:form>
-        
-        <p:dialog  id="cul" widgetVar="dig" modal="true"  hideEffect ="explode"  width="400" height="400">     
-        <p:messages id="messa" showDetail="true" closable="true"></p:messages>
-        <h:form>
-            <div id="st">
-                <h3>Preguntas</h3>
-            </div>
-            <p:inputTextarea rows = "6" cols = "33" value="#{beanPregunta.textoPregunta}" placeholder="Agregue la pregunta"/>
-             <br> </br>
-            <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Agregar" action="#{beanPregunta.guardaPregunta()}" update="messa"/>
-        </h:form>
+
+        <p:dialog  id="cul" widgetVar="dig" modal="true" resizable="false" hideEffect ="explode"  width="400" height="400">     
+            <h:form>
+                <p:inputText value="#{beanPregunta.idpregunta}" placeholder="Serial Pregunta"/>
+                <br> </br>
+                <div id="st">
+                    <h3>Pregunta</h3>
+                </div>
+                <p:inputTextarea rows = "6" cols = "33" value="#{beanPregunta.pregunta}" placeholder="Agregue La pregunta"/>
+                <div id="st">
+                    <h3> Opciones Pregunta</h3>
+                </div>
+                <p:inputTextarea rows = "6" cols = "33" value="#{beanPregunta.opcionmultiple}" placeholder="Agregue primera Opcion de pregunta"/>
+                <br> </br>
+                <p:inputTextarea rows = "6" cols = "33" value="#{beanPregunta.opcionmultipleI}" placeholder="Agregue segunda Opcion de pregunta"/>
+                <br> </br>
+                <p:inputTextarea rows = "6" cols = "33" value="#{beanPregunta.opcionmultipleII}" placeholder="Agregue tercera Opcion de pregunta"/>
+                <br> </br>
+                <p:inputTextarea rows = "6" cols = "33" value="#{beanPregunta.opcionmultipleIII}" placeholder="Agregue cuarta Opcion de pregunta"/>
+                <br> </br>
+                <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Agregar" action="#{beanPregunta.guardaPregunta()}" update="mess"/>
+            </h:form>
+            <p:messages id="mess" showDetail="true" closable="true"></p:messages>
         </p:dialog>
-        
-        <p:dialog  id="col" widgetVar="opc" modal="true"  hideEffect ="explode"  width="400" height="400">     
-        <p:messages id="mess" showDetail="true" closable="true"></p:messages>
-        <h:form>
-            <div id="st">
-                <h3> Opcion de Pregunta</h3>
-            </div>
-            <p:inputTextarea rows = "6" cols = "33" value="#{beanOpcionPregunta.opcionunica}" placeholder="Agregue una Opcion de pregunta"/>
-             <br> </br>
-             <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Agregar" action="#{beanOpcionPregunta.guardaOpcionPregunta()}" update="mess"/>
-        </h:form>
-        </p:dialog>
-        
-        <p:dialog  id="cel" widgetVar="test" modal="true"  hideEffect ="explode"  width="400" height="400">     
-        <h:form>
-            <div id="pt">
-                <h3> Test</h3>
-            </div>
-             <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Crear"/>
-        </h:form>
+
+        <p:dialog  id="cel" widgetVar="test" modal="true"  hideEffect ="explode"  width="1200" height="400">
+            <h:form>
+                <div id="pt">
+                    <h3> Test</h3>
+                </div>
+                <p:dataTable id="checkboxDT" var="pre" style="margin-bottom:0" value="#{beanListaPreguntas.preguntas}">
+                    <f:facet name="header">
+                        Preguntas
+                    </f:facet>                      
+                    <p:column headerText="Id">
+                        <h:outputText value="#{pre.idpregunta}" />
+                    </p:column>
+                    <p:column headerText="Pregunta">
+                        <h:outputText value="#{pre.pregunta}" />
+                    </p:column>
+                    <p:column headerText="Opcion 1">
+                        <h:outputText value="#{pre.opcionmultiple}" />
+                    </p:column>
+                    <p:column headerText="Opcion 2">
+                        <h:outputText value="#{pre.opcionmultipleI}" />
+                    </p:column>
+                    <p:column headerText="Opcion 3">
+                        <h:outputText value="#{pre.opcionmultipleII}" />
+                    </p:column> 
+                    <p:column headerText="Opcion 4">
+                        <h:outputText value="#{pre.opcionmultipleIII}" />
+                    </p:column> 
+                    <p:column headerText="Accion">
+                        <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Agregar" onclick="#{beanListaPreguntas.agregar(pre)}"/>
+                    </p:column> 
+                </p:dataTable>
+                <br> </br>
+                <p:dataTable id="checkbox" var="emple" style="margin-bottom:0" value="#{beanUsuario.usuarios}">
+                    <f:facet name="header">
+                        Empleados
+                    </f:facet>                      
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{emple.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido">
+                        <h:outputText value="#{emple.apellido}"/>
+                    </p:column>
+                    <p:column headerText="Accion">
+                        <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Seleccionar" onclick="#{beanListaPreguntas.agregar(pre)}"/>
+                    </p:column> 
+                    </p:dataTable>
+                <p:commandButton class="btn bg-white" style="text-align: center;margin: 05px;" value="Crear"/>
+            </h:form>
         </p:dialog>
     </h:body>
 </html>
-
