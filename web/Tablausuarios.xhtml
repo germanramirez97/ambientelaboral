@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TABLA USUARIOS</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        </link>
+        <link rel="stylesheet" href="css/cut.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body style="background-image:url(images/bg.jpg)">
+        <h:form id="form">
+            <p:dataTable var="dato" value="#{listasBean.usuario}">
+            <f:facet name="header">
+                 LISTA USUARIOS AMBIENTE LABORAL
+             </f:facet>    
+            <p:column headerText="USUARIO">
+                <h:outputText value="#{dato.usuario}" />
+            </p:column>
+
+            <p:column headerText="contra">
+                <h:outputText value="#{dato.contra}" />
+            </p:column>
+                
+                <p:column headerText="NOMBRE">
+                    <h:outputFormat value="#{dato.nombre}" />
+            </p:column>
+                
+                <p:column headerText="APELLIDO">
+                    <h:outputFormat value="#{dato.apellido}" />
+            </p:column>
+                
+                <p:column headerText="CEDULA">
+                    <h:outputFormat value="#{dato.cedula}" />
+            </p:column>
+                
+                <p:column headerText="NIVEL">
+                    <h:outputFormat value="#{dato.nivel}" />
+            </p:column>
+
+
+        </p:dataTable>
+            <p:commandButton value="VOLVER " action="#{listasBean.salir()}" id="iconOnly1" 
+                         style="margin-right:20px;" icon="pi pi-save" title="Volver" />
+        </h:form>
+    </h:body>
+</html>
+

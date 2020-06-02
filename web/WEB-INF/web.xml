@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorGuia</servlet-name>
+        <servlet-class>co.servlet.ControladorGuia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Archivo</servlet-name>
+        <servlet-class>co.servlet.Archivo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GuiaControlador</servlet-name>
+        <servlet-class>co.servlet.GuiaControlador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Guias</servlet-name>
+        <servlet-class>co.servlet.Guias</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/app/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorGuia</servlet-name>
+        <url-pattern>/ControladorGuia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Archivo</servlet-name>
+        <url-pattern>/Archivo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GuiaControlador</servlet-name>
+        <url-pattern>/GuiaControlador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Guias</servlet-name>
+        <url-pattern>/Guias</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>app/index.xhtml</welcome-file>
+    </welcome-file-list>
+</web-app>
